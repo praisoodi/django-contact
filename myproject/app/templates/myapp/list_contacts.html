@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact List</title>
+    <style>
+        /* Define your internal CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        p {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contact List</h1>
+    <ul>
+        {% for contact in contacts %}
+            <li>
+                Name: {{ contact.name }}, phonenumber: {{ contact.phonenumber }}, description: {{ contact.description }}
+                <a href="{% url 'edit_contact' contact.id %}">Edit</a>
+                <a href="{% url 'delete_contact' contact.id %}">Delete</a>
+            </li>
+        {% empty %}
+            <p>No contacts available.</p>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_contact' %}">Add Contact</a>
+</body>
+</html>
